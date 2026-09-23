@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - "3.8"
+
+before_install:
+  - chmod +x ./flaskapp/st.sh
+
+install:
+  - pip install flask
+  - pip install flask-wtf
+  - pip install flask-bootstrap
+  - pip install pillow
+  - pip install numpy
+  - pip install matplotlib
+  - pip install gunicorn
+  - pip install requests
+
+script:
+  - cd flaskapp
+  - ./st.sh
