@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Зашумление картинки{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Зашумление изображения</h1>
+
+  <!-- Автоматическая форма от Bootstrap -->
+  {{ wtf.quick_form(form, method='post',
+                    enctype="multipart/form-data",
+                    action="noise") }}
+
+  {% if filename %}
+    <hr>
+    <h3>Исходная картинка:</h3>
+    <img src="{{ filename }}" width="224" class="img-rounded">
+
+    <h3>Зашумлённая картинка:</h3>
+    <img src="static/noisy.png" width="224" class="img-rounded">
+
+    <hr>
+    <h3>Распределение цветов (исходная):</h3>
+    <img src="data:image/png;base64,{{ orig_plot }}" class="img-responsive">
+
+    <h3>Распределение цветов (зашумлённая):</h3>
+    <img src="data:image/png;base64,{{ noisy_plot }}" class="img-responsive">
+  {% endif %}
+</div>
+{% endblock %}
